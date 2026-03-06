@@ -168,7 +168,7 @@ class CDFTSolver:
             c.update_Vc()
 
         # Compute the total constraint potential Vc.
-        self.Vc_tot = np.sum(c.Vc for c in self.constraints)
+        self.Vc_tot = sum(c.Vc for c in self.constraints)
 
         # Impose the constraint potential Vc to DFT code.
         self.dft_driver.set_Vc(self.Vc_tot)
@@ -182,7 +182,7 @@ class CDFTSolver:
 
         for i, c in enumerate(self.constraints):
             c.update_N()
-        self.sample.W = self.sample.Ed + self.sample.Ec - np.sum(c.N * c.V for c in self.constraints)
+        self.sample.W = self.sample.Ed + self.sample.Ec - sum(c.N * c.V for c in self.constraints)
 
         # Print intermediate results
         print("=======================================")
@@ -235,7 +235,7 @@ class CDFTSolver:
             # compute constraint force
             for c in self.constraints:
                 c.update_Fc()
-            self.sample.Fc = np.sum(c.Fc for c in self.constraints)
+            self.sample.Fc = sum(c.Fc for c in self.constraints)
 
             self.sample.Fw = self.sample.Fd + self.sample.Fc
             Fwnorm = np.linalg.norm(self.sample.Fw, axis=1)
