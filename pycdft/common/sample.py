@@ -156,9 +156,9 @@ class Sample(object):
         omega = self.omega
 
         # Update promolecule densities
-        self.rhopro_tot_r = np.zeros([self.n1, self.n2, self.n3], dtype=np.complex_)
+        self.rhopro_tot_r = np.zeros([self.n1, self.n2, self.n3], dtype=np.complex128)
         for f in self.fragments:
-            f.rhopro_r = np.zeros([self.n1, self.n2, self.n3], dtype=np.complex_)
+            f.rhopro_r = np.zeros([self.n1, self.n2, self.n3], dtype=np.complex128)
 
         for atom in self.atoms:
             rhog = self.compute_rhoatom_g(atom)

@@ -205,17 +205,17 @@ def embedd_g(fg_arr, gvecs, grid, fill=None):
         f(G) defined on grid.
     """
     if fill is None:
-        fg = np.zeros((grid.n1, grid.n2, grid.n3), dtype=np.complex_)
+        fg = np.zeros((grid.n1, grid.n2, grid.n3), dtype=np.complex128)
         fg[gvecs[:, 0], gvecs[:, 1], gvecs[:, 2]] = fg_arr
 
     elif fill == "yz":
-        fg = np.zeros((grid.n1h, grid.n2, grid.n3), dtype=np.complex_)
+        fg = np.zeros((grid.n1h, grid.n2, grid.n3), dtype=np.complex128)
         fg[gvecs[:, 0], gvecs[:, 1], gvecs[:, 2]] = fg_arr
         for ig2, ig3 in grid.yzlowerplane:
             fg[0, ig2, ig3] = fg[0, -ig2, -ig3].conjugate()
 
     elif fill == "xyz":
-        fg = np.zeros((grid.n1, grid.n2, grid.n3), dtype=np.complex_)
+        fg = np.zeros((grid.n1, grid.n2, grid.n3), dtype=np.complex128)
         fg[gvecs[:, 0], gvecs[:, 1], gvecs[:, 2]] = fg_arr
         for ig1, ig2, ig3 in grid.xyzlowerspace:
             fg[ig1, ig2, ig3] = fg[-ig1, -ig2, -ig3].conjugate()
